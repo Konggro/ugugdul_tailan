@@ -1,0 +1,61 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 60px auto;
+  grid-template-columns: 250px auto;
+  grid-template-areas:
+    "header header"
+    "sidebar map";
+  height: 100vh;
+}
+
+header {
+  grid-area: header;
+  background-color: #2c3e50;
+  color: white;
+  padding: 15px;
+  font-size: 20px;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: #ecf0f1;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+#map {
+  grid-area: map;
+  height: 100%;
+}
+
+button {
+  margin-top: 10px;
+  display: block;
+  text-align: left;
+}
+
+.info-row {
+  margin-top: 30px;
+}
+
+select {
+  width: 100%;
+  margin-top: 10px;
+}
+
+textarea {
+  width: 100%;
+}
+
+
+
+
+
+

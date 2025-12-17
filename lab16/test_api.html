@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        pre { background: #f4f4f4; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Lab16 API Test</h1>
+    
+    <div class="test">
+        <h3>1. Health Check</h3>
+        <button onclick="testHealth()">Test /health</button>
+        <div id="health-result"></div>
+    </div>
+    
+    <div class="test">
+        <h3>2. Route Test</h3>
+        <button onclick="testRoute()">Test /route</button>
+        <div id="route-result"></div>
+    </div>
+    
+    <div class="test">
+        <h3>3. API Base URL</h3>
+        <p>Current: <code id="api-base">http://localhost:5002</code></p>
+        <button onclick="checkAPI()">Check if API is running</button>
+        <div id="api-check"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5002';
+        
+        async function testHealth() {
+            const resultDiv = document.getElementById('health-result');
+            resultDiv.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <div class="success">
+                            <p><strong>✓ Success!</strong></p>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="error">
+                            <p><strong>✗ Error:</strong> HTTP ${response.status}</p>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <p><strong>✗ Connection Error:</strong></p>
+                        <p>${error.message}</p>
+                        <p>Make sure Flask API is running: <code>python app.py</code></p>
+                    </div>
+                `;
+            }
+        }
+        
+        async function testRoute() {
+            const resultDiv = document.getElementById('route-result');
+            resultDiv.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/route`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        start_lat: 0,
+                        start_lon: 0,
+                        end_lat: 10,
+                        end_lon: 10
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <div class="success">
+                            <p><strong>✓ Success!</strong></p>
+                            <p>Found route with ${data.features.length} segments</p>
+                            <pre>${JSON.stringify(data, null, 2).substring(0, 500)}...</pre>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="error">
+                            <p><strong>✗ Error:</strong> HTTP ${response.status}</p>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <p><strong>✗ Connection Error:</strong></p>
+                        <p>${error.message}</p>
+                        <p>Make sure Flask API is running: <code>python app.py</code></p>
+                    </div>
+                `;
+            }
+        }
+        
+        async function checkAPI() {
+            const checkDiv = document.getElementById('api-check');
+            checkDiv.innerHTML = '<p>Checking...</p>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/`);
+                const data = await response.json();
+                
+                checkDiv.innerHTML = `
+                    <div class="success">
+                        <p><strong>✓ API is running!</strong></p>
+                        <p>Available endpoints:</p>
+                        <ul>
+                            ${Object.entries(data.endpoints).map(([path, desc]) => 
+                                `<li><code>${path}</code> - ${desc}</li>`
+                            ).join('')}
+                        </ul>
+                    </div>
+                `;
+            } catch (error) {
+                checkDiv.innerHTML = `
+                    <div class="error">
+                        <p><strong>✗ API is not running!</strong></p>
+                        <p>Error: ${error.message}</p>
+                        <p><strong>Solution:</strong></p>
+                        <ol>
+                            <li>Open terminal</li>
+                            <li>Run: <code>cd lab16</code></li>
+                            <li>Run: <code>python app.py</code></li>
+                            <li>Wait for: <code>* Running on http://0.0.0.0:5002</code></li>
+                            <li>Refresh this page</li>
+                        </ol>
+                    </div>
+                `;
+            }
+        }
+        
+        // Auto-check on load
+        window.onload = function() {
+            checkAPI();
+        };
+    </script>
+</body>
+</html>
+
+

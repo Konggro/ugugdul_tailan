@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgis:
+    image: postgis/postgis:16-3.4
+    container_name: postgis_gis
+    environment:
+      - POSTGRES_DB=gisdb
+      - POSTGRES_USER=gisuser
+      - POSTGRES_PASSWORD=gispass
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+      - ./data:/data       # ← энд OSM файл хадгалах
+
+  pgadmin:
+    image: dpage/pgadmin4:8
+    container_name: pgadmin_gis
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=admin123
+      - PGADMIN_CONFIG_SERVER_MODE=False
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgis
+    volumes:
+      - ./pgadmin_data:/var/lib/pgadmin
+
+

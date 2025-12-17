@@ -1,0 +1,13 @@
+services:
+  frontend:
+    build: .
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    container_name: frontend_static
+
+
+
+
+
+

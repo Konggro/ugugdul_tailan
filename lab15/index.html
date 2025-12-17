@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15 минутын хот - Хот төлөвлөлт</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="controls">
+        <h2>15 минутын хот - Анализ</h2>
+        
+        <div class="section">
+            <h3>Хороолол сонгох</h3>
+            <select id="horoololSelect">
+                <option value="36">36-р хороолол</option>
+                <option value="15">15-р хороолол</option>
+                <option value="1">1-р хороолол</option>
+                <option value="bayangol">Баянгол дүүрэг</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <h3>Isochrone</h3>
+            <button onclick="calculateIsochrone()">15 минутын Isochrone татах</button>
+        </div>
+
+        <div class="section">
+            <h3>Давхаргууд</h3>
+            <label>
+                <input type="checkbox" id="showHeatmap" onchange="toggleHeatmap()">
+                Авто ослын Heatmap
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" id="showClusters" onchange="toggleClusters()" checked>
+                ЕБС-ууд (Clustering)
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" id="showPharmacies" onchange="togglePharmacies()">
+                Эмийн сангууд (Clustering)
+            </label>
+        </div>
+
+        <div class="section">
+            <h3>Үр дүн</h3>
+            <div id="results">
+                <p>Хороолол сонгоод Isochrone татна уу...</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+

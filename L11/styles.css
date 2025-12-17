@@ -1,0 +1,29 @@
+*{
+  box-sizing: border-box
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+}
+
+#mapid {
+  height: 100vh;
+  width: 100vw;
+}
+
+
+.my-div-icon{
+  /*background-color: null;*/
+  /*background-repeat: no-repeat;*/
+  /*cover the entire container*/
+  background-size: cover;
+  background-image: url('./Data/icon_point.png');
+}
+
+.current-location-icon {
+  background: transparent;
+  border: none;
+}
+

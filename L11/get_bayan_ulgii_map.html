@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bayan-Ölgiy Aimag Map Capture</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-providers@1.13.0/leaflet-providers.js"></script>
+  <style>
+    body { margin: 0; padding: 20px; font-family: Arial, sans-serif; }
+    #map { height: 600px; width: 100%; border: 2px solid #333; }
+    .instructions { background: #f0f0f0; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
+    .button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+    .button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <div class="instructions">
+    <h2>Баян-Өлгий аймгийн газрын зургийг PNG болгох заавар</h2>
+    <ol>
+      <li>Доорх газрын зураг дээр Баян-Өлгий аймгийг төвлөрүүлнэ</li>
+      <li>Browser-ийн Developer Tools (F12) нээнэ</li>
+      <li>Console дээр дараах командыг ажиллуулна: <code>html2canvas(document.getElementById('map')).then(canvas => { const link = document.createElement('a'); link.download = 'BayanUlgii_aimag.png'; link.href = canvas.toDataURL(); link.click(); });</code></li>
+      <li>Эсвэл screenshot хийж, газрын зургийг зөвхөн сонгоод хадгална</li>
+      <li>PNG файлыг <code>L11/Data/BayanUlgii_aimag.png</code> гэж хадгална</li>
+    </ol>
+    <p><strong>Анхаар:</strong> OpenTopoMap layer-ийг сонгоод, zoom level-ийг тохируулна уу (zoom 7-9 зохимжтой)</p>
+  </div>
+  
+  <div id="map"></div>
+  
+  <script>
+    // Bayan-Ölgiy bounds: [[min_lat, min_lon], [max_lat, max_lon]]
+    const bayanUlgiiBounds = [[46.541687012, 87.749656677], [50.00510788, 91.927124024]];
+    const center = [(bayanUlgiiBounds[0][0] + bayanUlgiiBounds[1][0]) / 2, 
+                    (bayanUlgiiBounds[0][1] + bayanUlgiiBounds[1][1]) / 2];
+    
+    const map = L.map('map').setView(center, 7);
+    
+    // OpenTopoMap layer
+    const openTopoMap = L.tileLayer.provider('OpenTopoMap');
+    openTopoMap.addTo(map);
+    
+    // Fit bounds to Bayan-Ölgiy
+    map.fitBounds(bayanUlgiiBounds);
+    
+    // Draw boundary rectangle
+    L.rectangle(bayanUlgiiBounds, {
+      color: "#ff7800",
+      weight: 3,
+      fill: false
+    }).addTo(map).bindPopup('Баян-Өлгий аймгийн хил');
+  </script>
+  
+  <!-- Optional: html2canvas library for easier capture -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>
+

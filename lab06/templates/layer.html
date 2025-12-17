@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OSM Map Viewer</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      🗺️ OSM Map Viewer
+    </header>
+
+    <div class="sidebar">
+      <label for="layerSelect">Давхарга сонгох:</label>
+      <select id="layerSelect">
+        <option value="empty">---</option>
+        <option value="roads">Зам</option>
+        <option value="shops">Дэлгүүр, хоолны газар</option>
+        <option value="medical">Эмнэлэг, эмийн сан</option>
+        <option value="schools">Сургууль, цэцэрлэг</option>
+        <option value="buildings_all">Бүх барилга</option>
+        <option value="both">Зам + Бүх барилга</option>
+      </select>
+
+      <button id="loadBtn">Ачаалах</button>
+
+      <div class="info-row">
+        <label for="infoBox">Мэдээлэл:</label>
+        <textarea id="infoBox" rows="6" placeholder="Давхарга байхгүй."></textarea>
+      </div>
+    </div>
+
+    <div id="map"></div>
+  </div>
+
+  <!-- Flask-аас дамжуулсан өгөгдлийг JS-д оруулах -->
+  <script>
+    window.roadsData = {{ roads|tojson }};
+    window.buildingsShopsData = {{ buildings_shops|tojson }};
+    window.buildingsMedicalData = {{ buildings_medical|tojson }};
+    window.buildingsSchoolsData = {{ buildings_schools|tojson }};
+    window.buildingsOtherData = {{ buildings_other|tojson }};
+    window.bounds = {{ bounds|tojson }};
+  </script>
+
+  <!-- Тусад нь бичсэн JS кодыг оруулна -->
+  <script src="{{ url_for('static', filename='map.js') }}"></script>
+  <script>
+    showLayerMap(); // layer-д зориулсан функц
+  </script>
+</body>
+</html>
+

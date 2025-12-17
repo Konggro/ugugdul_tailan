@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pgRouting - Богино зам олох</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="controls">
+        <h2>pgRouting - Богино зам</h2>
+        
+        <div class="section">
+            <h3>Эхлэх цэг (Гэр)</h3>
+            <input type="number" id="start_lat" placeholder="Latitude" step="0.0001" value="0">
+            <input type="number" id="start_lon" placeholder="Longitude" step="0.0001" value="0">
+            <button onclick="setStartFromMap()">Газрын зураг дээр сонгох</button>
+        </div>
+
+        <div class="section">
+            <h3>Очих цэг (Сургууль)</h3>
+            <input type="number" id="end_lat" placeholder="Latitude" step="0.0001" value="10">
+            <input type="number" id="end_lon" placeholder="Longitude" step="0.0001" value="10">
+            <button onclick="setEndFromMap()">Газрын зураг дээр сонгох</button>
+        </div>
+
+        <div class="section">
+            <button onclick="findRoute()" class="primary-btn">Зам олох</button>
+            <button onclick="clearRoute()" class="secondary-btn">Цэвэрлэх</button>
+        </div>
+
+        <div class="section">
+            <h3>Үр дүн</h3>
+            <div id="results">
+                <p>Цэгүүд сонгоод "Зам олох" товч дараад...</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+

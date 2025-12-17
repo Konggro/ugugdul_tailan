@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Docker volumes and data
+**/pgdata/
+**/pgadmin_data/
+**/data/*.osm
+**/data/*.osm.pbf
+**/data/*.pbf
+
+# Logs
+*.log
+*.log.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+/tmp/
+
+# Environment variables
+.env
+.env.local
+
+# Large data files (keep structure, ignore content)
+lab10/data/*.osm
+lab10/data/*.osm.pbf
+lab10/data/*.pbf
+lab10/data/gadm/*.shp
+lab10/data/gadm/*.dbf
+lab10/data/gadm/*.shx
+lab10/data/gadm/*.prj
+lab10/data/gadm/*.cpg
+
+# But keep empty data directories
+!lab10/data/.gitkeep
+!lab10/data/gadm/.gitkeep
+

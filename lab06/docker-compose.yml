@@ -1,0 +1,17 @@
+services:
+  osm-flask:
+    build: .
+    ports:
+      - "5001:5001"
+    volumes:
+      - .:/app
+    environment:
+      - PORT=5001
+    networks:
+      - default
+      - lab10_default
+
+networks:
+  lab10_default:
+    external: true
+

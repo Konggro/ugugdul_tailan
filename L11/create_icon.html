@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create u_r_here.PNG Icon</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    canvas {
+      border: 1px solid #333;
+      margin: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .instructions {
+      background: #f0f0f0;
+      padding: 15px;
+      margin: 20px auto;
+      max-width: 600px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>u_r_here.PNG Icon үүсгэх</h1>
+  
+  <div class="instructions">
+    <p>Доорх canvas дээр "You are here" marker icon үүсгэгдсэн байна.</p>
+    <p>"Download PNG" товч дараад, файлыг <code>L11/Data/u_r_here.PNG</code> гэж хадгална уу.</p>
+  </div>
+  
+  <canvas id="iconCanvas" width="32" height="32"></canvas>
+  <br>
+  <button onclick="downloadIcon()">Download PNG</button>
+  
+  <script>
+    const canvas = document.getElementById('iconCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Улаан тойрог marker зурна
+    function drawIcon() {
+      // Background transparent
+      ctx.clearRect(0, 0, 32, 32);
+      
+      // Улаан тойрог
+      ctx.fillStyle = '#ff0000';
+      ctx.beginPath();
+      ctx.arc(16, 16, 12, 0, 2 * Math.PI);
+      ctx.fill();
+      
+      // Цагаан хүрээ
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      
+      // Доторх цагаан цэг
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(16, 16, 4, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+    
+    function downloadIcon() {
+      canvas.toBlob(function(blob) {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.download = 'u_r_here.PNG';
+        link.href = url;
+        link.click();
+        URL.revokeObjectURL(url);
+      }, 'image/png');
+    }
+    
+    // Icon зурна
+    drawIcon();
+  </script>
+</body>
+</html>
+
+
+
+

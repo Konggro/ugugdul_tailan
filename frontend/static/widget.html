@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Widget sample (Leaflet)</title>
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="/static/widget.css" />
+</head>
+<body>
+  <div class="layout">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="top-controls" role="region" aria-label="Map controls">
+          <label for="layerSelect" class="sr-only">Хичээлийн байр сонгох</label>
+          <select id="layerSelect" aria-label="Хичээлийн байр сонгох">
+            <option value="empty">---</option>
+            <option value="1">ШУТИС - Хичээлийн 1-р байр</option>
+            <option value="2">ШУТИС - Хичээлийн 2-р байр</option>
+            <option value="3">ШУТИС - Хичээлийн 3-р байр</option>
+            <option value="4">ШУТИС - Хичээлийн 4-р байр</option>
+            <option value="5">ШУТИС - Хичээлийн 5-р байр</option>
+            <option value="6">ШУТИС - Хичээлийн 6-р байр</option>
+          </select>
+
+          <button id="loadBtn" class="btn">Ачаалах</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div id="map" aria-label="Leaflet map"></div>
+    </main>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+  <script src="/static/widget.js"></script>
+</body>
+</html>
+
+
+

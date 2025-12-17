@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Олон төрлийн тээвэр - Multi-modal Routing</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/static/multimodal.css">
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h2>Мэдээлэл</h2>
+      <div id="info-panel">
+        <p>Газрын зураг дээр эхлэх цэгээ сонгоно уу.</p>
+      </div>
+      <div id="time-info" style="display: none;">
+        <h3>Зарцуулах хугацаа:</h3>
+        <div id="time-details"></div>
+      </div>
+    </div>
+    <div class="content">
+      <div id="map"></div>
+    </div>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+  <script src="/static/multimodal.js"></script>
+</body>
+</html>
+
+
+
+

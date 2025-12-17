@@ -1,0 +1,85 @@
+body { 
+    margin: 0; 
+    padding: 0; 
+    font-family: sans-serif; 
+}
+
+#map { 
+    height: 100vh; 
+    width: 100%; 
+}
+
+/* Удирдах самбарын загвар */
+#controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    width: 300px;
+}
+
+h2 { 
+    margin-top: 0; 
+    font-size: 18px; 
+    color: #333; 
+}
+
+button {
+    background-color: #0078A8;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+button:hover { 
+    background-color: #005a7d; 
+}
+
+.legend-item { 
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 8px; 
+    font-size: 13px; 
+}
+
+.color-box { 
+    width: 20px; 
+    height: 20px; 
+    margin-right: 10px; 
+    border-radius: 4px; 
+    opacity: 0.6; 
+}
+
+#results { 
+    margin-top: 15px; 
+    border-top: 1px solid #eee; 
+    padding-top: 10px; 
+}
+
+#results p {
+    color: #666;
+}
+
+.stat-item { 
+    margin-bottom: 5px; 
+    font-weight: bold; 
+}
+
+h3 {
+    font-size: 16px;
+    color: #333;
+    margin-top: 0;
+}
+
+
+
+

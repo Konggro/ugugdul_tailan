@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OSM Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <h2>OSM Map Viewer</h2>
+  <div id="map" style="height:600px;"></div>
+  <script>
+    var center = {{ center|tojson }};
+    
+    //zoom=2 → дэлхийн хэмжээний зураг
+    //zoom=12 → хотын хэмжээ
+    //zoom=16 → гудамж, барилга тод харагдана
+    //zoom=0-22
+    var map = L.map('map').setView(center, 16); // center-г төв болгож
+    //var map = L.map('map').setView([47.92, 106.92], 12); // УБ-г төв болгож
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    var coords = {{ coords|tojson|safe }};
+    coords.forEach(function(c) {
+      L.circleMarker([c[0], c[1]], {radius:2, color:'red'}).addTo(map);
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+

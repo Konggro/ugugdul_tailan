@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isochrone & Accessibility Analysis</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="controls">
+        <h2>Isochrone Анализ</h2>
+        <p>Сүхбаатарын талбайгаас алхах хугацаа:</p>
+        
+        <div class="legend-item"><div class="color-box" style="background: green;"></div> 5 минут</div>
+        <div class="legend-item"><div class="color-box" style="background: yellow;"></div> 10 минут</div>
+        <div class="legend-item"><div class="color-box" style="background: red;"></div> 15 минут</div>
+        
+        <button onclick="loadRealSchools()">Сургуулиуд дахин ачаалах</button>
+        <button onclick="calculateIsochrones()">Тооцоолох & Анализ хийх</button>
+        
+        <div id="results">
+            <p>Сургуулиудын өгөгдөл татаж байна...</p>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
